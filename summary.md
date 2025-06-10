@@ -27,22 +27,22 @@ The script follows best practices for securing a Linux system using a basic but 
 # 🧰 Step-by-Step Breakdown  
 ## 🔁 Step 1: System Update 
 
-**bash :** 
-  sudo apt update && sudo apt upgrade -y
+    **bash :** 
+       sudo apt update && sudo apt upgrade -y
  
-    **Purpose :** Ensures all installed packages are up-to-date.
-    **Why Important :** Prevents exploitation through outdated software.
-    **Effect :** Fetches latest package lists and upgrades installed packages without prompts (-y).
+   **Purpose :** Ensures all installed packages are up-to-date.
+   **Why Important :** Prevents exploitation through outdated software.
+   **Effect :** Fetches latest package lists and upgrades installed packages without prompts (-y).
      
 
 ## ⚙️ Step 2: Install UFW 
 
-**bash :**
-  sudo apt install ufw -y
+    **bash :**
+       sudo apt install ufw -y
  
-    **Purpose :** Installs UFW if not already present.
-    **Why Important :** UFW simplifies firewall management for beginners and administrators alike.
-    **Effect :** Installs UFW with default configurations.
+   **Purpose :** Installs UFW if not already present.
+   **Why Important :** UFW simplifies firewall management for beginners and administrators alike.
+   **Effect :** Installs UFW with default configurations.
      
 
 ## 🛑 Step 3: Set Default Policies 
@@ -51,66 +51,68 @@ The script follows best practices for securing a Linux system using a basic but 
   sudo ufw default deny incoming
   sudo ufw default allow outgoing
  
-    **Purpose :** Sets secure default rules for traffic.
-    **Why Important :** Denying all incoming traffic by default minimizes exposure to threats.
-    **Effect :**  Blocks all unsolicited incoming connections. Allows all outgoing traffic (for normal internet use like browsing, updates, etc.).
+  **Purpose :** Sets secure default rules for traffic.
+  **Why Important :** Denying all incoming traffic by default minimizes exposure to threats.
+  **Effect :**  Blocks all unsolicited incoming connections. Allows all outgoing traffic (for normal internet use like browsing, updates, etc.).
         
 🔒 Principle of least privilege applied here. 
      
 
 ## 🚪 Step 4: Allow Specific Ports 
 
-**bash :**
-sudo ufw allow 22     # SSH
-sudo ufw allow 80     # HTTP
-sudo ufw allow 443    # HTTPS
+    **bash :**
+       sudo ufw allow 22     # SSH
+       sudo ufw allow 80     # HTTP
+       sudo ufw allow 443    # HTTPS
  
-    **Purpose :** Allows necessary services to function while keeping the system secure.
-    **Why Important :**
+   **Purpose :** Allows necessary services to function while keeping the system secure.
+   **Why Important :**
         Port 22 (SSH): Remote administration access
         Port 80 (HTTP): Web traffic (non-encrypted)
         Port 443 (HTTPS): Secure web traffic (encrypted)
          
-  ##  Optional Services :
+           
+##  Optional Services :
    
-  **bash :**
+    **bash :**
     # sudo ufw allow 21     # FTP
     # sudo ufw allow 8080   # Custom app
      
-      These lines are commented out but can be enabled if needed.
+These lines are commented out but can be enabled if needed.
      
 
 ## 🔥 Step 5: Enable the Firewall 
 
-**bash :**
-sudo ufw enable
+    **bash :**
+       sudo ufw enable
  
-    **Purpose :** Activates the firewall with the defined rules.
-    **Why Important :** Without enabling, no rules take effect.
-    **Effect :** Applies the configured rules immediately and persists across reboots.
+   **Purpose :** Activates the firewall with the defined rules.
+   **Why Important :** Without enabling, no rules take effect.
+   **Effect :** Applies the configured rules immediately and persists across reboots.
      
 
 ## 📊 Step 6: Show Status 
 
-**bash :**
-sudo ufw status numbered
+     **bash :**
+        sudo ufw status numbered
  
-    **Purpose :** Displays current active firewall rules with numbers.
-    **Why Important :** Provides visibility into which ports/services are allowed or blocked.
+   **Purpose :** Displays current active firewall rules with numbers.
+   **Why Important :** Provides visibility into which ports/services are allowed or blocked.
+
     **Output :**
      - Status: active
 
      To                         Action      From
      --                         ------      ----
-[ 1] 22/tcp                     ALLOW IN    Anywhere                  
-[ 2] 80/tcp                     ALLOW IN    Anywhere                  
-[ 3] 443/tcp                    ALLOW IN    Anywhere                  
-[ 4] 25/tcp                     DENY IN     Anywhere                  
-[ 5] Anywhere                   DENY IN     192.168.1.100             
-[ 6] 23/tcp                     DENY IN     Anywhere                  
-[ 7] 22                         ALLOW IN    Anywhere                  
-[ 8] 80                         ALLOW IN    Anywhere                  
-[ 9] 443                        ALLOW IN    Anywhere                  
+    [ 1] 22/tcp                     ALLOW IN    Anywhere                  
+    [ 2] 80/tcp                     ALLOW IN    Anywhere                  
+    [ 3] 443/tcp                    ALLOW IN    Anywhere                  
+    [ 4] 25/tcp                     DENY IN     Anywhere                  
+    [ 5] Anywhere                   DENY IN     192.168.1.100             
+    [ 6] 23/tcp                     DENY IN     Anywhere                  
+    [ 7] 22                         ALLOW IN    Anywhere                  
+    [ 8] 80                         ALLOW IN    Anywhere                  
+    [ 9] 443                        ALLOW IN    Anywhere                  
 
 ---
 
@@ -155,21 +157,19 @@ sudo ufw status numbered
 
 ## ✅ Final Notes 
 ✔️ Advantages of This Configuration: 
-
-    Simple and easy to understand.
-    Follows security best practices.
-    Can be extended easily with additional services.
+-    Simple and easy to understand.
+-    Follows security best practices.
+-    Can be extended easily with additional services.
      
 
 ## 🛠️ Tips for Future Enhancements: 
-
-    Add logging: sudo ufw logging on
-    Limit SSH login attempts with rate limiting:  
+   -  Add logging: sudo ufw logging on
+   -  Limit SSH login attempts with rate limiting:  
                    
-**bash :**
-  sudo ufw limit 22/tcp
+    **bash :**
+       sudo ufw limit 22/tcp
 
-     - Use application profiles in /etc/ufw/applications.d/
+ - Use application profiles in /etc/ufw/applications.d/
      
 
 ## 📄 Conclusion  
