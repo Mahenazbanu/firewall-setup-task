@@ -27,7 +27,6 @@ The script follows best practices for securing a Linux system using a basic but 
 # 🧰 Step-by-Step Breakdown  
 ## 🔁 Step 1: System Update 
 
-    **bash :** 
        sudo apt update && sudo apt upgrade -y
  
    **Purpose :** Ensures all installed packages are up-to-date.
@@ -37,7 +36,6 @@ The script follows best practices for securing a Linux system using a basic but 
 
 ## ⚙️ Step 2: Install UFW 
 
-    **bash :**
        sudo apt install ufw -y
  
    **Purpose :** Installs UFW if not already present.
@@ -47,9 +45,8 @@ The script follows best practices for securing a Linux system using a basic but 
 
 ## 🛑 Step 3: Set Default Policies 
 
-**bash :** 
-  sudo ufw default deny incoming
-  sudo ufw default allow outgoing
+     sudo ufw default deny incoming
+     sudo ufw default allow outgoing
  
   **Purpose :** Sets secure default rules for traffic.
   **Why Important :** Denying all incoming traffic by default minimizes exposure to threats.
@@ -60,7 +57,6 @@ The script follows best practices for securing a Linux system using a basic but 
 
 ## 🚪 Step 4: Allow Specific Ports 
 
-    **bash :**
        sudo ufw allow 22     # SSH
        sudo ufw allow 80     # HTTP
        sudo ufw allow 443    # HTTPS
@@ -74,7 +70,6 @@ The script follows best practices for securing a Linux system using a basic but 
            
 ##  Optional Services :
    
-    **bash :**
     # sudo ufw allow 21     # FTP
     # sudo ufw allow 8080   # Custom app
      
@@ -83,7 +78,6 @@ These lines are commented out but can be enabled if needed.
 
 ## 🔥 Step 5: Enable the Firewall 
 
-    **bash :**
        sudo ufw enable
  
    **Purpose :** Activates the firewall with the defined rules.
@@ -93,14 +87,13 @@ These lines are commented out but can be enabled if needed.
 
 ## 📊 Step 6: Show Status 
 
-     **bash :**
         sudo ufw status numbered
  
    **Purpose :** Displays current active firewall rules with numbers.
    **Why Important :** Provides visibility into which ports/services are allowed or blocked.
 
     **Output :**
-     - Status: active
+        - Status: active
 
      To                         Action      From
      --                         ------      ----
@@ -166,8 +159,8 @@ These lines are commented out but can be enabled if needed.
    -  Add logging: sudo ufw logging on
    -  Limit SSH login attempts with rate limiting:  
                    
-    **bash :**
-       sudo ufw limit 22/tcp
+ 
+           sudo ufw limit 22/tcp
 
  - Use application profiles in /etc/ufw/applications.d/
      
